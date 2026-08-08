@@ -1,0 +1,20 @@
+{
+  "name": "vibe-img",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pixel avatar generator on Cloudflare Pages + Functions. Deterministic SVG from a seed string.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev ./public",
+    "deploy": "wrangler pages deploy ./public",
+    "typecheck": "tsc --noEmit -p functions/tsconfig.json"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240620.0",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.65.0"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

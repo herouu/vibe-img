@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Deterministic pixel avatar generator. Runs on Cloudflare Pages. No accounts, no tracking, no AI — just hash + palette."
+    />
+    <title>Pixel Avatar Generator</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/api/avatar?seed=vibe&style=pixel-detail&size=32"
+    />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <h1>Pixel Avatar Generator</h1>
+        <p class="lede">
+          Type a seed, pick a style, get a deterministic SVG. Same input &rarr;
+          same output, forever. Runs entirely on the Cloudflare edge.
+        </p>
+      </header>
+
+      <section class="card" aria-labelledby="controls-title">
+        <h2 id="controls-title" class="card-title">Controls</h2>
+
+        <div class="field">
+          <label for="seed">Seed</label>
+          <div class="seed-row">
+            <input
+              id="seed"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              maxlength="64"
+              placeholder="anything you like"
+            />
+            <button id="random" type="button" class="btn btn-ghost" title="Random seed">
+              Random
+            </button>
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend>Style</legend>
+          <div class="style-grid" role="radiogroup" aria-label="Style">
+            <label class="style-option">
+              <input
+                type="radio"
+                name="style"
+                value="identicon"
+              />
+              <span class="style-preview">
+                <img src="/api/avatar?seed=vibe&style=identicon&size=64" alt="" />
+              </span>
+              <span class="style-label">Identicon</span>
+            </label>
+            <label class="style-option">
+              <input type="radio" name="style" value="pixel" />
+              <span class="style-preview">
+                <img src="/api/avatar?seed=vibe&style=pixel&size=64" alt="" />
+              </span>
+              <span class="style-label">Pixel face</span>
+            </label>
+            <label class="style-option">
+              <input type="radio" name="style" value="abstract" />
+              <span class="style-preview">
+                <img src="/api/avatar?seed=vibe&style=abstract&size=64" alt="" />
+              </span>
+              <span class="style-label">Abstract</span>
+            </label>
+            <label class="style-option">
+              <input type="radio" name="style" value="anime" />
+              <span class="style-preview">
+                <img src="/api/avatar?seed=vibe&style=anime&size=64" alt="" />
+              </span>
+              <span class="style-label">Anime</span>
+            </label>
+            <label class="style-option">
+              <input type="radio" name="style" value="xiuxian" />
+              <span class="style-preview">
+                <img src="/api/avatar?seed=vibe&style=xiuxian&size=64" alt="" />
+              </span>
+              <span class="style-label">Xiuxian (修仙)</span>
+            </label>
+            <label class="style-option">
+              <input type="radio" name="style" value="pixel-detail" checked />
+              <span class="style-preview">
+                <img src="/api/avatar?seed=plant&style=pixel-detail&size=64" alt="" />
+              </span>
+              <span class="style-label">Plant (盆栽)</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="size">
+            Size <span id="size-value" class="size-value">128</span><span class="unit">px</span>
+          </label>
+          <input id="size" type="range" min="16" max="512" step="8" value="128" />
+          <div class="size-presets" role="group" aria-label="Size presets">
+            <button type="button" class="chip" data-size="64">64</button>
+            <button type="button" class="chip" data-size="128">128</button>
+            <button type="button" class="chip" data-size="256">256</button>
+            <button type="button" class="chip" data-size="512">512</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card preview-card" aria-labelledby="preview-title">
+        <h2 id="preview-title" class="card-title">Preview</h2>
+        <div class="preview-stage">
+          <img id="preview" alt="Generated avatar" />
+        </div>
+        <p id="api-url" class="api-url" aria-live="polite"></p>
+        <div class="actions">
+          <button id="copy" type="button" class="btn btn-primary">Copy URL</button>
+          <button id="download-png" type="button" class="btn btn-secondary">
+            Download PNG
+          </button>
+          <a id="download" class="btn btn-secondary" download="avatar.svg">
+            Download SVG
+          </a>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <p>
+          API:
+          <code>GET /api/avatar?seed=...&amp;style=identicon|pixel|abstract|anime|xiuxian|pixel-detail&amp;size=128</code>
+        </p>
+      </footer>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

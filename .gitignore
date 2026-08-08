@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Build output
+.wrangler/
+dist/
+build/
+
+# Wrangler local artifacts
+.dev.vars
+.mf/
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Test / scratch
+public/samples/
+
+# Agent tool state
+.codegraph/
+.omo/

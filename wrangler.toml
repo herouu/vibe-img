@@ -1,0 +1,11 @@
+name = "vibe-img"
+compatibility_date = "2024-09-01"
+pages_build_output_dir = "./public"
+
+# The `_lib` directory is imported by the avatar function but should not be
+# exposed as a route. Wrangler Pages already only routes files in `functions/`
+# matching the URL pattern, but a leading underscore tells the build system to
+# skip bundling the file as an endpoint.
+#
+# No KV / D1 / R2 bindings are required for the current scope — generation is
+# fully deterministic and stateless. Add bindings here when you introduce them.
